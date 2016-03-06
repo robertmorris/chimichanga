@@ -1,7 +1,7 @@
 (function() {
     'use strict';
 
-    angular.module('chimichanga.core', [
+    angular.module('app.core', [
         /*
          * Angular modules
          */

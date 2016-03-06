@@ -2,7 +2,7 @@
     'use strict';
 
     angular
-        .module('chimichanga.core')
+        .module('app.core')
         .constant('toastr', toastr)
         .constant('moment', moment);
 })();

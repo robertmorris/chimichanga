@@ -1,7 +1,7 @@
 (function() {
     'use strict';
 
-    var core = angular.module('chimichanga.core');
+    var core = angular.module('app.core');
 
     core.config(toastrConfig);
 

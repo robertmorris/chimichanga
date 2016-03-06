@@ -2,7 +2,7 @@
     'use strict';
 
     angular
-        .module('chimichanga.login')
+        .module('app.login')
         .run(appRun);
 
     // appRun.$inject = ['routehelper']
@@ -17,7 +17,7 @@
             {
                 url: '/login',
                 config: {
-                    templateUrl: 'chimichanga/login/login.html',
+                    templateUrl: 'app/login/login.html',
                     controller: 'Login',
                     controllerAs: 'vm',
                     title: 'login'

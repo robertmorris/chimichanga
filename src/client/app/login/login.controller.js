@@ -2,7 +2,7 @@
     'use strict';
 
     angular
-        .module('chimichanga.login')
+        .module('app.login')
         .controller('Login', Login);
 
     /* @ngInject */

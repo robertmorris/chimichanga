@@ -1,7 +1,7 @@
 (function() {
     'use strict';
 
-    angular.module('chimichanga', [
+    angular.module('app', [
         /*
          * Order is not important. Angular makes a
          * pass to register all of the modules listed
@@ -14,12 +14,12 @@
          * We could place these under every feature area,
          * but this is easier to maintain.
          */
-        'chimichanga.core',
+        'app.core',
         
         /*
          * Feature areas
          */
-        'chimichanga.login'
+        'app.login'
     ]);  
     
 })();
