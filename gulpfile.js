@@ -6,7 +6,7 @@ var glob = require('glob');
 var plato = require('plato');
 var paths = require('./gulp.config.json');
 var merge = require('merge-stream');
-var karma = require('karma').server;
+var karma = require('karma');
 var reload = browserSync.reload;
 
 var colors = plugins.util.colors;
@@ -466,11 +466,12 @@ function startTests(singleRun, done) {
         excludeFiles.push('./src/client/test/midway/**/*.spec.js');
     }
 
-    karma.start({
+    var server = new karma.Server({
         configFile: __dirname + '/karma.conf.js',
         exclude: excludeFiles,
         singleRun: !!singleRun
     }, karmaCompleted);
+    server.start();
 
     ////////////////
 
