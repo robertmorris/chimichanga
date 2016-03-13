@@ -175,7 +175,7 @@ gulp.task('rev-and-inject', ['js', 'vendorjs', 'css', 'vendorcss'], function() {
         .pipe(minFilter) // filter the stream to minified css and js
         .pipe(plugins.rev()) // create files with rev's
         .pipe(gulp.dest(paths.build)) // write the rev files
-        .pipe(minFilter.restore()) // remove filter, back to original stream
+        .pipe(minFilter.restore) // remove filter, back to original stream
 
     // inject the files into index.html
     .pipe(indexFilter) // filter to index.html
@@ -184,7 +184,7 @@ gulp.task('rev-and-inject', ['js', 'vendorjs', 'css', 'vendorcss'], function() {
         .pipe(inject('vendor.min.js', 'inject-vendor'))
         .pipe(inject('all.min.js'))
         .pipe(gulp.dest(paths.build)) // write the rev files
-    .pipe(indexFilter.restore()) // remove filter, back to original stream
+    .pipe(indexFilter.restore) // remove filter, back to original stream
 
     // replace the files referenced in index.html with the rev'd files
     .pipe(plugins.revReplace()) // Substitute in new filenames
