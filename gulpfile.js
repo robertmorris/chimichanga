@@ -105,7 +105,7 @@ gulp.task('css', function() {
         .pipe(plugins.concat('all.min.css')) // Before bytediff or after
         .pipe(plugins.autoprefixer('last 2 version', '> 5%'))
         .pipe(plugins.bytediff.start())
-        .pipe(plugins.cleanCSS({}))
+        .pipe(plugins.cleanCss({}))
         .pipe(plugins.bytediff.stop(bytediffFormatter))
         //        .pipe(plugins.concat('all.min.css')) // Before bytediff or after
         .pipe(gulp.dest(paths.build + 'content'));
@@ -124,7 +124,7 @@ gulp.task('vendorcss', function() {
         .pipe(vendorFilter)
         .pipe(plugins.concat('vendor.min.css'))
         .pipe(plugins.bytediff.start())
-        .pipe(plugins.cleanCSS({}))
+        .pipe(plugins.cleanCss({}))
         .pipe(plugins.bytediff.stop(bytediffFormatter))
         .pipe(gulp.dest(paths.build + 'content'));
 });
