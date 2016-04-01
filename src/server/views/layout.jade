@@ -23,30 +23,3 @@ html(ng-app='app')
         .row
           .col-xs-12
             small &copy; Michael Thompson 2016
-
-    //- inject-vendor:js 
-    script(src="/bower_components/jquery/dist/jquery.js")
-    script(src="/bower_components/angular/angular.js")
-    script(src="/bower_components/bootstrap/dist/js/bootstrap.js")
-    script(src="/bower_components/toastr/toastr.js")
-    //- endinject 
-
-    //- inject:js 
-    //- Bootstrapping 
-    script(src="/client/app/app.module.js")
-
-    //- Reusable Blocks/Modules 
-    script(src="/client/app/blocks/exception/exception.module.js")
-    script(src="/client/app/blocks/exception/exception-handler.provider.js")
-    script(src="/client/app/blocks/exception/exception.js")
-    script(src="/client/app/blocks/logger/logger.module.js")
-    script(src="/client/app/blocks/logger/logger.js")
-    script(src="/client/app/blocks/router/router.module.js")
-    script(src="/client/app/blocks/router/routehelper.js")
-
-    //- core module 
-    script(src="/client/app/core/core.module.js")
-    script(src="/client/app/core/constants.js")
-    script(src="/client/app/core/config.js")
-
-    //- endinject 
