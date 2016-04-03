@@ -22,8 +22,7 @@ app.use(cookieParser());
 
 app.use('/', routes);
 
-app.use('/bower_components',  express.static( path.join(__dirname, 'bower_components')));
-app.use('/client',  express.static( path.join(__dirname, 'src', 'client')));
+//app.use('/client',  express.static( path.join(__dirname, 'src', 'client')));
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
