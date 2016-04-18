@@ -3,17 +3,41 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "start": "node ./bin/www"
+    "start": "node ./bin/www",
+    "ngstart": "concurrently \"npm run tsc:w\" \"npm run lite\" ",
+    "tsc": "tsc",
+    "tsc:w": "tsc -w",
+    "lite": "lite-server",
+    "typings": "typings",
+    "postinstall": "typings install",
+    "tslint": "tslint -c tslint.json src/client/app/**/*.ts"
   },
   "dependencies": {
+    "angular2": "^2.0.0-beta.15",
     "body-parser": "~1.13.2",
     "cookie-parser": "~1.3.5",
     "debug": "~2.2.0",
+    "es6-shim": "^0.35.0",
     "express": "~4.13.1",
     "jade": "~1.11.0",
     "morgan": "~1.6.1",
-    "serve-favicon": "~2.3.0"
+    "reflect-metadata": "0.1.2",
+    "rxjs": "5.0.0-beta.2",
+    "serve-favicon": "~2.3.0",
+    "systemjs": "^0.19.26",
+    "zone.js": "0.6.10"
   },
   "devDependencies": {
+    "concurrently": "^2.0.0",
+    "del": "^2.2.0",
+    "gulp": "^3.9.1",
+    "gulp-flatten": "^0.2.0",
+    "gulp-sourcemaps": "^1.6.0",
+    "gulp-tslint": "^4.3.5",
+    "gulp-typescript": "^2.13.0",
+    "lite-server": "^2.2.0",
+    "tslint": "^3.7.4",
+    "typescript": "^1.8.10",
+    "typings": "^0.7.12"
   }
 }
