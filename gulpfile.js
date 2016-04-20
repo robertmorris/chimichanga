@@ -11,8 +11,23 @@ gulp.task('clean', function () {
   return del('public/**/*');
 });
 
+// TypeScript clean
+gulp.task('clean-ts', function () {
+  return del('public/app/*');
+});
+
+// Asset Clean
+gulp.task('clean-assets', function () {
+  return del('public/*');
+});
+
+// Lib Clean
+gulp.task('clean-libs', function () {
+  return del('public/lib/*');
+});
+
 // TypeScript compile
-gulp.task('compile', ['clean'], function () {
+gulp.task('compile', ['clean-ts'], function () {
   return gulp
     .src('src/client/app/**/*')
     .pipe(sourcemaps.init())          // <--- sourcemaps
@@ -22,7 +37,7 @@ gulp.task('compile', ['clean'], function () {
 });
 
 // copy dependencies
-gulp.task('copy:libs', ['clean'], function() {
+gulp.task('copy:libs', ['clean-libs'], function() {
   return gulp.src([
       'node_modules/es6-shim/es6-shim.min.js',
       'node_modules/systemjs/dist/system-polyfills.js',
@@ -37,7 +52,7 @@ gulp.task('copy:libs', ['clean'], function() {
 });
 
 // copy static assets - i.e. non TypeScript compiled source
-gulp.task('copy:assets', ['clean'], function() {
+gulp.task('copy:assets', ['clean-assets'], function() {
   return gulp.src(['src/client/app/**/*', 'src/client/index.html', 'src/client/styles.css', '!src/client/app/**/*.ts'], { base : './' })
     .pipe(flatten())
     .pipe(gulp.dest('public'))
@@ -50,5 +65,9 @@ gulp.task('tslint', function() {
     .pipe(tslint.report('verbose'));
 });
 
-gulp.task('build', ['tslint', 'compile', 'copy:libs', 'copy:assets']);
+gulp.task('watch', function() {
+    gulp.watch('src/client/app/**/*.ts', ['tslint', 'compile']);
+});
+
+gulp.task('build', ['clean', 'tslint', 'compile', 'copy:libs', 'copy:assets']);
 gulp.task('default', ['build']);
