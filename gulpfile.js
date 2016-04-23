@@ -4,6 +4,8 @@ const typescript = require('gulp-typescript');
 const tscConfig = require('./tsconfig.json');
 const sourcemaps = require('gulp-sourcemaps');
 const tslint = require('gulp-tslint');
+const browserSync = require('browser-sync').create();
+const reload = browserSync.reload;
 var flatten = require('gulp-flatten');
 
 // clean the contents of the distribution directory
@@ -18,7 +20,7 @@ gulp.task('clean-ts', function () {
 
 // Asset Clean
 gulp.task('clean-assets', function () {
-  return del('public/*');
+  return del(['public/*','!public/app','!public/lib']);
 });
 
 // Lib Clean
@@ -66,7 +68,8 @@ gulp.task('tslint', function() {
 });
 
 gulp.task('watch', function() {
-    gulp.watch('src/client/app/**/*.ts', ['tslint', 'compile']);
+    gulp.watch('src/client/app/**/*.ts', ['tslint', 'compile'], reload);
+    gulp.watch(['src/client/app/**/*', 'src/client/index.html', 'src/client/styles.css', '!src/client/app/**/*.ts'], ['copy:assets'], reload);
 });
 
 gulp.task('build', ['clean', 'tslint', 'compile', 'copy:libs', 'copy:assets']);
