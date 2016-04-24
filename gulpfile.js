@@ -4,8 +4,6 @@ const typescript = require('gulp-typescript');
 const tscConfig = require('./tsconfig.json');
 const sourcemaps = require('gulp-sourcemaps');
 const tslint = require('gulp-tslint');
-const browserSync = require('browser-sync').create();
-const reload = browserSync.reload;
 var flatten = require('gulp-flatten');
 
 // clean the contents of the distribution directory
@@ -29,7 +27,7 @@ gulp.task('clean-libs', function () {
 });
 
 // TypeScript compile
-gulp.task('compile', ['clean-ts'], function () {
+gulp.task('compile', function () {
   return gulp
     .src('src/client/app/**/*')
     .pipe(sourcemaps.init())          // <--- sourcemaps
@@ -39,7 +37,7 @@ gulp.task('compile', ['clean-ts'], function () {
 });
 
 // copy dependencies
-gulp.task('copy:libs', ['clean-libs'], function() {
+gulp.task('copy:libs', function() {
   return gulp.src([
       'node_modules/es6-shim/es6-shim.min.js',
       'node_modules/systemjs/dist/system-polyfills.js',
@@ -54,7 +52,7 @@ gulp.task('copy:libs', ['clean-libs'], function() {
 });
 
 // copy static assets - i.e. non TypeScript compiled source
-gulp.task('copy:assets', ['clean-assets'], function() {
+gulp.task('copy:assets', function() {
   return gulp.src(['src/client/app/**/*', 'src/client/index.html', 'src/client/styles.css', '!src/client/app/**/*.ts'], { base : './' })
     .pipe(flatten())
     .pipe(gulp.dest('public'))
@@ -68,8 +66,8 @@ gulp.task('tslint', function() {
 });
 
 gulp.task('watch', function() {
-    gulp.watch('src/client/app/**/*.ts', ['tslint', 'compile'], reload);
-    gulp.watch(['src/client/app/**/*', 'src/client/index.html', 'src/client/styles.css', '!src/client/app/**/*.ts'], ['copy:assets'], reload);
+    gulp.watch('src/client/app/**/*.ts', ['tslint', 'compile']);
+    gulp.watch(['src/client/app/**/*', 'src/client/index.html', 'src/client/styles.css', '!src/client/app/**/*.ts'], ['copy:assets']);
 });
 
 gulp.task('build', ['clean', 'tslint', 'compile', 'copy:libs', 'copy:assets']);
